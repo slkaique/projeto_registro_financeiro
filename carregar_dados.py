@@ -6,7 +6,7 @@ import pandas as pd
 
 from funcoes import criar_tabela
 
-df_amazon = pd.read_csv("C:/Users/User/Downloads/amazon.csv", dtype=str)
+df_amazon = pd.read_csv("amazon.csv", dtype=str)
 df = df_amazon[["product_name", "actual_price", "discounted_price"]].copy()
 
 
@@ -38,7 +38,6 @@ df_final["valor"] = df_final["valor"].astype(float).round(2)
 df_final["desconto"] = df_final["desconto"].astype(float).round(2)
 df_final["data"] = df_final["data"].astype(str)
 
-df_final.to_csv("amazon.csv", index=False)
 criar_tabela()
 conn = sqlite3.connect("registro.db", check_same_thread=False)
 df_final.to_sql("registros", conn, if_exists="append", index=False)
